@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Research Tracker{% endblock %}
+
+{% block content %}
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Doctor</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.research_type }}</td>
+                <td>{{ item.user.full_name }}</td>
+                <td>
+                    <span class="status-badge status-{{ item.status|lower }}">{{ item.status }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

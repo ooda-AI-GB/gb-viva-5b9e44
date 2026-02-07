@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDO Reporting System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="user-info">
+            <h3>MDO System</h3>
+            <p>Welcome, {{ user.full_name }}</p>
+            <small>{{ user.role|capitalize }}</small>
+        </div>
+        <a href="/dashboard" class="{% if request.url.path == '/dashboard' %}active{% endif %}">Dashboard</a>
+        <a href="/meetings" class="{% if request.url.path == '/meetings' %}active{% endif %}">Meeting Attendance</a>
+        <a href="/schedule" class="{% if request.url.path == '/schedule' %}active{% endif %}">Clinic Schedule</a>
+        <a href="/services" class="{% if request.url.path == '/services' %}active{% endif %}">Services Rendered</a>
+        <a href="/research" class="{% if request.url.path == '/research' %}active{% endif %}">Research Tracker</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h2>{% block title %}Dashboard{% endblock %}</h2>
+            <div>{{ today }}</div>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

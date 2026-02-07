@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Clinic Schedule{% endblock %}
+
+{% block content %}
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Time Slot</th>
+                <th>Doctor</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for slot in slots %}
+            <tr>
+                <td>{{ slot.day_of_week }}</td>
+                <td>{{ slot.start_time }} - {{ slot.end_time }}</td>
+                <td>{{ slot.user.full_name }}</td>
+                <td>General Surgery</td> <!-- Hardcoded for simplicity as per model -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

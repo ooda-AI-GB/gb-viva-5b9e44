@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Services Rendered{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h3>Log New Service</h3>
+    <form action="/services" method="post" style="display: flex; gap: 10px; align-items: flex-end;">
+        <div style="flex: 1;">
+            <label for="procedure">Procedure/Activity Name</label>
+            <input type="text" id="procedure" name="procedure_name" required style="margin-bottom: 0;">
+        </div>
+        <div style="flex: 2;">
+            <label for="notes">Notes</label>
+            <input type="text" id="notes" name="notes" required style="margin-bottom: 0;">
+        </div>
+        <button type="submit" class="btn-primary">Add Entry</button>
+    </form>
+</div>
+
+<div class="card">
+    <h3>History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Doctor</th>
+                <th>Procedure/Activity</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.user.full_name }}</td>
+                <td>{{ entry.procedure_name }}</td>
+                <td>{{ entry.notes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

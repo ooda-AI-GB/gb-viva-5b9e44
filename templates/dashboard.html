@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+    <div class="card">
+        <div class="card-title">Total Meetings</div>
+        <div class="card-value">{{ stats.meetings }}</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Clinic Sessions</div>
+        <div class="card-value">{{ stats.clinics }}</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Procedures Logged</div>
+        <div class="card-value">{{ stats.procedures }}</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Research Papers</div>
+        <div class="card-value">{{ stats.research }}</div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>System Overview</h3>
+    <p>Welcome to the Medical Directorate Office Reporting System POC. Use the sidebar to navigate between modules.</p>
+</div>
+{% endblock %}
