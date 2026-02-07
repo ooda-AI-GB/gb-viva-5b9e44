@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 import models
-from passlib.context import CryptContext
+import hashlib
 import datetime
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -32,13 +32,13 @@ def get_db():
     finally:
         db.close()
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 
 def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+    return hashlib.sha256(plain_password.encode()).hexdigest() == hashed_password
 
 def get_password_hash(password):
-    return pwd_context.hash(password)
+    return hashlib.sha256(password.encode()).hexdigest()
 
 def get_current_user(request: Request, db: Session = Depends(get_db)):
     username = request.session.get("user")
